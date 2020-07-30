@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    startTimer()
+
     var lockStatus = false;
     var hourOfDay;
 
@@ -29,18 +31,21 @@ $(document).ready(function() {
 
     function hasTheHourPassedCheck() {
         let currentHour = getHourOfDay()
-        for (i = 9; i < 18; i++) {
-
+        for (i = 8; i < 18; i++) {
             if (currentHour >= i) {
                 $("#hour" + i).css("background-color", "#838383")
             } else {
                 $("#hour" + i).css("background-color", "#f3f3f3")
             }
-
-
         }
     }
-    hasTheHourPassedCheck()
+
+
+    function startTimer() {
+        timeFunc = setInterval(function() {
+            hasTheHourPassedCheck()
+        }, 1);
+    }
 
 
     function checkLockStatus(event) {
@@ -64,6 +69,3 @@ $(document).ready(function() {
 
 
 });
-
-
-// fas fa - lock
