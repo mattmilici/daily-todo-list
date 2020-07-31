@@ -38,9 +38,7 @@ $(document).ready(function() {
         }, 100);
     }
     // -----------------function that checks if the button is locked and chances lockStatus to true or false -------------------------
-    function checkLockStatus(event) {
-        // event.stopPropagation();
-
+    function checkLockStatus() {
         let lockIcon = this.className;
         let lockPosition = lockIcon.includes("fas fa-lock-open");
 
@@ -50,6 +48,10 @@ $(document).ready(function() {
             lockStatus = false;
             console.log(lockStatus);
             $(this).parent().find("input").attr("disabled", true);
+
+            var userKey = $(this).parent().find("input").attr("id");
+            var userInput = $(this).parent().find("input").val();
+            localStorage.setItem(userKey, JSON.stringify(userInput));
         } else {
             $(this).removeClass("fas fa-lock");
             $(this).addClass("fas fa-lock-open");
@@ -59,5 +61,5 @@ $(document).ready(function() {
         return lockStatus;
     }
 
-    // -----------------Function determines if a box should be locked or not-------------------------
+    // -----------------Function stores data------------------------
 });
