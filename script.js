@@ -10,6 +10,14 @@ $(document).ready(function() {
     $(document).ready(function() {
         let date = moment().format("dddd, Do MMMM");
         $("#currentDay").text(date);
+
+        for (let i = 9; i <= 18; i++) {
+            getData = localStorage.getItem("hour" + i);
+            parsedData = JSON.parse(getData);
+            console.log(parsedData);
+            let inputID = "#hour" + i;
+            $(inputID).val(parsedData);
+        }
     });
 
     // -----------------Gets the hour of the day. This is used to see if the hour has passed and color should be marked gray-------------------------
